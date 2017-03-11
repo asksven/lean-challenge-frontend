@@ -1,0 +1,11 @@
+Leaders<hr>
+<div class="row">
+  <div class="col-cs-12">
+    <ul class="list-group">
+      <lc-leaders-item [leader]="leader" (click)="onSelected(leader)"></lc-leaders-item>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <lc-leader-details (leaderSelected)="getNotification($event)"></lc-leader-details>
+</div>
