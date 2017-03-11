@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Achievement } from './achievement';
 @Component({
   selector: 'lc-achievements',
   templateUrl: './achievements.component.html',
@@ -7,11 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AchievementsComponent implements OnInit {
 
-  saving: number = 535;
-  improvements: number = 30;
-  quality_improvements: number = 25;
-
-
+  achievement = new Achievement('Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50);
   constructor() { }
 
   ngOnInit() {

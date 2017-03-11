@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Achievement } from '../achievement'
+import { Achievement } from '../../achievements/achievement'
 import { Leader } from '../leader';
 
 @Component({
@@ -18,3 +18,4 @@ export class LeaderDetailsComponent implements OnInit {
   }
 
 }
+
