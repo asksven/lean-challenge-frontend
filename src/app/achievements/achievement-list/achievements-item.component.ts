@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Achievement } from '../../achievement'
+import { Achievement } from '../achievement'
 
 @Component({
   selector: 'lc-achievements-item',

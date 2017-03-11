@@ -10,7 +10,7 @@ import { AchievementsComponent } from './achievements/achievements.component';
 import { LeadersComponent } from './leaders/leaders.component';
 import { LeadersItemComponent } from './leaders/leader-list/leaders-item.component';
 import { LeaderDetailsComponent } from './leaders/leader-details/leader-details.component';
-import { AchievementsItemComponent } from './leaders/leader-details/achievement-list/achievements-item.component';
+import { AchievementsItemComponent } from './achievements/achievement-list/achievements-item.component';
 
 @NgModule({
   declarations: [
