@@ -1,8 +1,14 @@
-Acievements<hr>
+Details<hr>
 <div class="row">
-  <div class="col-cs-12">
+  <div class="col-xs-12">
     <ul class="list-group">
-      <lc-achievements-item [achievement]="achievement"></lc-achievements-item>
+      <lc-achievements-item *ngFor="let achievement of achievements" [achievement]="achievement"></lc-achievements-item>
     </ul>
+  </div>
+</div>  
+
+<div class="row">
+  <div class="col-xs-12">
+    <lc-achievement-add></lc-achievement-add>
   </div>
 </div>

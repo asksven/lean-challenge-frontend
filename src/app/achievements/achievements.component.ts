@@ -7,7 +7,11 @@ import { Achievement } from './achievement';
 })
 export class AchievementsComponent implements OnInit {
 
-  achievement = new Achievement('Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50);
+  achievements: Achievement[] = [
+    new Achievement('Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50),
+    new Achievement('Team CCT', 'Optimized laptop provisioning for devs', "The process was optimized in order to avoid projects to requests VM-Ware using their own charge code", 20)
+  ];
+  
   constructor() { }
 
   ngOnInit() {
