@@ -90,7 +90,11 @@ export class DataService {
       }
     }
 
-    return leaders;
+    // we make sure that the leaders are sorted by number of improvements
+    // as we want to encourage the numbers rather than the saving
+    return leaders.sort( function(a,b) {
+      return b.improvements - a.improvements
+    })
   } 
 
 }
