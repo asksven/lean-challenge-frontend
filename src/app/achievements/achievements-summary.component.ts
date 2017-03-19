@@ -16,6 +16,13 @@ export class AchievementsSummaryComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService.pushData.subscribe(
+      data => this.refreshData()
+    );
+    this.refreshData();
+  }
+
+  refreshData() {
     this.improvements = this.dataService.getNumberOfAchievements();
     this.quality_improvements = this.dataService.getNumberofQualityImprovements();
     this.saving = this.dataService.getTotalSaving();

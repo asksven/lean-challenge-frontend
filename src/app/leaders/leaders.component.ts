@@ -25,6 +25,9 @@ export class LeadersComponent implements OnInit {
 
  
   ngOnInit() {
+    this.dataService.pushData.subscribe(
+      data => this.leaders = this.dataService.getLeaders()
+    );
   }
 
 }

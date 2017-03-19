@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 import { Achievement } from './achievements/achievement';
 import { Leader } from './leaders/leader';
@@ -7,6 +7,8 @@ import { LogService } from './log.service';
 
 @Injectable()
 export class DataService {
+  pushData = new EventEmitter<string>();
+
   private achievements: Achievement[] = [
     new Achievement('Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50),
     new Achievement('Team CCT', 'Optimized laptop provisioning for devs', "The process was optimized in order to avoid projects to requests VM-Ware using their own charge code", 20),
@@ -16,23 +18,32 @@ export class DataService {
   ];
 
   constructor(private logService: LogService) {
-
   }
 
+  // inform all observers of a data-change
+  private dataChanged(value: string) {
+    this.pushData.emit(value);
+  }
+
+  // add an achievement
   addAchievement(value: Achievement) {
-    this.logService.writeToLog("Added " + value + " to achievements");
+    this.logService.writeToLog("Added " + JSON.stringify(value) + " to achievements");
     this.achievements.push(value);
+    this.dataChanged("added");
   }
   
+  // fetch all achievements
   getAchievements() {
     this.logService.writeToLog("Retrieved " + this.achievements.length + " achievements");
     return this.achievements;
   }
 
+  // get the total number of achievements
   getNumberOfAchievements() {
     return this.achievements.length;
   }
 
+  // get the total number of quality-only achievements
   getNumberofQualityImprovements() {
     var count: number = 0;
     for (let i of this.achievements) {
@@ -43,16 +54,20 @@ export class DataService {
     return count;
   }
 
+  // get the total savings
   getTotalSaving() {
     var saving: number = 0;
     for (let i of this.achievements) {
       if (i.saving != 0) {
+        console.log("adding " + i.saving + " to " + saving);
         saving += i.saving;
+        console.log("total saving " + saving);
       }
     }
     return saving;
   }
 
+  // get the acievements summary by team == Leader board
   getLeaders() {
     var leaders: Leader[] = [];
 
