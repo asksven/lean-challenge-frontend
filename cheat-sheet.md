@@ -7,5 +7,8 @@ Prefix is recommended to avoid any namespace-clashes
 `ng g d <directive-name> [--flat]`
 ### Create a class
 `ng g cl <class-name>`
+### Create a service
+`ng g s <service-name>`
+
 
 

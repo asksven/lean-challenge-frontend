@@ -14,6 +14,9 @@ import { LeaderDetailsComponent } from './leaders/leader-details/leader-details.
 import { AchievementsItemComponent } from './achievements/achievement-list/achievements-item.component';
 import { AchievementAddComponent } from './achievements/achievement-list/achievement-add.component';
 
+import { LogService } from './log.service';
+import { DataService } from './data.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,7 @@ import { AchievementAddComponent } from './achievements/achievement-list/achieve
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [LogService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

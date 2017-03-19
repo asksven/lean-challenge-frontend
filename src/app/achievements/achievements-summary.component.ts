@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'lc-achievements-summary',
@@ -7,14 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AchievementsSummaryComponent implements OnInit {
 
-  saving: number = 535;
-  improvements: number = 30;
-  quality_improvements: number = 25;
+  saving: number = 0;
+  improvements: number = 0;
+  quality_improvements: number = 0;
 
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.improvements = this.dataService.getNumberOfAchievements();
+    this.quality_improvements = this.dataService.getNumberofQualityImprovements();
+    this.saving = this.dataService.getTotalSaving();
   }
 
 }

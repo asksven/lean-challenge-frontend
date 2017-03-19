@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Achievement } from '../../achievements/achievement'
 import { Leader } from '../leader';
 
+import { DataService } from '../../data.service';
+
 @Component({
   selector: 'lc-leader-details',
   templateUrl: './leader-details.component.html',
@@ -11,10 +13,10 @@ import { Leader } from '../leader';
 export class LeaderDetailsComponent implements OnInit {
 
   achievements: Achievement[] = []
-  achievement: Achievement = new Achievement("CCT", "Optimized Azure FW Process", "Instead of trying to keep up pace and generate deltas for changes within the 2800 Azure Subnets the process now deletes and re-creates all subnets for every change", 60);
-  constructor() { }
+  constructor(private dataService: DataService) { }
     
   ngOnInit() {
+    this.achievements = this.dataService.getAchievements();
   }
 
 }

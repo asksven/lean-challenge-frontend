@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Achievement } from './achievement';
+import { LogService } from '../log.service';
+import {DataService} from '../data.service'
+
 @Component({
   selector: 'lc-achievements',
   templateUrl: './achievements.component.html',
@@ -7,14 +10,13 @@ import { Achievement } from './achievement';
 })
 export class AchievementsComponent implements OnInit {
 
-  achievements: Achievement[] = [
-    new Achievement('Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50),
-    new Achievement('Team CCT', 'Optimized laptop provisioning for devs', "The process was optimized in order to avoid projects to requests VM-Ware using their own charge code", 20)
-  ];
+  achievements: Achievement[] = [];
   
-  constructor() { }
+  constructor(private logService: LogService, private dataService: DataService) { }
 
   ngOnInit() {
+    this.logService.writeToLog('achivements component was initialized');
+    this.achievements = this.dataService.getAchievements();
   }
 
 }
