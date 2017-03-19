@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+import { DataService } from './data.service';
+
+
+
 @Component({
   selector: 'lc-root',
   templateUrl: './app.component.html',
@@ -7,5 +11,7 @@ import { Component } from '@angular/core';
   providers: []
 })
 export class AppComponent {
+  constructor(private dataService: DataService) {
+  };
 
 }

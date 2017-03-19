@@ -16,6 +16,7 @@ import { AchievementAddComponent } from './achievements/achievement-list/achieve
 
 import { LogService } from './log.service';
 import { DataService } from './data.service';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,11 @@ import { DataService } from './data.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [LogService, DataService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

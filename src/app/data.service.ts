@@ -18,6 +18,7 @@ export class DataService {
   ];
 
   constructor(private logService: LogService) {
+    console.log("initialized DataService");
   }
 
   // inform all observers of a data-change
