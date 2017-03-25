@@ -37,7 +37,7 @@ export class AchievementEditComponent implements OnInit, OnDestroy {
     this.dataService.saveAchievement(this.id, team, title, description, +saving);
     
     // navigate away
-    this.router.navigate(['..']); 
+    this.router.navigate(['/achievements']); 
   }
 
 }

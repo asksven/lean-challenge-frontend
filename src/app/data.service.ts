@@ -51,14 +51,12 @@ export class DataService {
   }
 
   saveAchievement(id: number, team: string, title: string, description: string, saving: number) {
-    for (var i = 0; i < this.achievements.length; i++) {
-      if(this.achievements[i].id == id) {
-          console.log("found.... updating");
-          this.achievements[i]['team'] = team;
-          this.achievements[i]['title'] = title;
-          this.achievements[i]['description'] = description;
-          this.achievements[i]['saving'] = saving;
-      }
+    if(this.achievements[id]) {
+        console.log("found.... updating");
+        this.achievements[id]['team'] = team;
+        this.achievements[id]['title'] = title;
+        this.achievements[id]['description'] = description;
+        this.achievements[id]['saving'] = saving;
     }
   }
   
