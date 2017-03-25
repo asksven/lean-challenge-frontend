@@ -13,6 +13,7 @@ import { LeadersItemComponent } from './leaders/leader-list/leaders-item.compone
 import { LeaderDetailsComponent } from './leaders/leader-details/leader-details.component';
 import { AchievementsItemComponent } from './achievements/achievement-list/achievements-item.component';
 import { AchievementAddComponent } from './achievements/achievement-list/achievement-add.component';
+import { AchievementEditGuard } from './achievements/achievement-list/achievement-edit.guard';
 
 import { LogService } from './log.service';
 import { DataService } from './data.service';
@@ -39,7 +40,7 @@ import { AchievementEditComponent } from './achievements/achievement-list/achiev
     HttpModule,
     routing
   ],
-  providers: [LogService, DataService],
+  providers: [LogService, DataService, AchievementEditGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

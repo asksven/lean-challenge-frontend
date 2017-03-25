@@ -26,8 +26,8 @@
     </div>
 
     <div class="row">
-      <button class="btn btn-success" (click)="saveAchievement(team.value, title.value, description.value, saving.value)" type="submit">Save</button>
-      <button class="btn btn-primary" type="submit">Cancel</button>
+      <button class="btn btn-success" (click)="onSaveAchievement(team.value, title.value, description.value, saving.value)" type="submit">Save</button>
+      <button class="btn btn-primary" (click)="onCancel()" type="submit">Cancel</button>
     </div>
   </div>
 </div>

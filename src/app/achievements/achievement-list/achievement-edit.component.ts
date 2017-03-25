@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription, Observable } from 'rxjs/Rx';
 
 import { Achievement } from '../achievement';
+import { ComponentCanDeactivate } from './achievement-edit.guard';
 
 import { DataService } from '../../data.service';
 
@@ -11,10 +12,11 @@ import { DataService } from '../../data.service';
   templateUrl: './achievement-edit.component.html',
   styleUrls: ['./achievement-edit.component.css']
 })
-export class AchievementEditComponent implements OnInit, OnDestroy {
+export class AchievementEditComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
   private subscription: Subscription;
 
   private id: number;
+  private done: boolean = false;
   
   @Input() achievement: Achievement;
 
@@ -32,12 +34,22 @@ export class AchievementEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  saveAchievement(team: string, title: string, description: string, saving: number) {
-    console.log("addAchievement was passed " + team);
+  onSaveAchievement(team: string, title: string, description: string, saving: number) {
+    // finish-up and navigate away
     this.dataService.saveAchievement(this.id, team, title, description, +saving);
-    
-    // navigate away
+    this.done = true;
     this.router.navigate(['/achievements']); 
+  }
+
+  onCancel() {
+    // navigate away
+    this.done = true;
+    this.router.navigate(['/achievements']);
+  }
+
+  canDeactivate(): Observable<boolean> | boolean {
+    console.log("can deactivate called, done is " + this.done);
+    return this.done;
   }
 
 }

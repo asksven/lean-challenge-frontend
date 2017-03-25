@@ -50,6 +50,17 @@ export class DataService {
     return achievement;
   }
 
+  deleteAchievement(id: number) {
+
+    for (var i: number = 0; i < this.achievements.length; i++) {
+      if (this.achievements[i].id == id) {  
+        console.log("deleting element " + i + "(id=" + id + ") with id " + this.achievements[i][id]);  
+        this.achievements.splice(i, 1);
+        
+      }
+    }
+  }
+
   saveAchievement(id: number, team: string, title: string, description: string, saving: number) {
     if(this.achievements[id]) {
         console.log("found.... updating");
