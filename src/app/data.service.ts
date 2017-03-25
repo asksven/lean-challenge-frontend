@@ -10,10 +10,10 @@ export class DataService {
   pushData = new EventEmitter<string>();
 
   private achievements: Achievement[] = [
-    new Achievement('Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50),
-    new Achievement('Team CCT', 'Optimized laptop provisioning for devs', "The process was optimized in order to avoid projects to requests VM-Ware using their own charge code", 20),
-    new Achievement('Team CCT', 'Automated DEP status', "The DEP list is automatically updated when devices are exchanged", 0),
-    new Achievement('Team SnS', 'Some improvement', "Some text", 0)
+    new Achievement(1, 'Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50),
+    new Achievement(2, 'Team CCT', 'Optimized laptop provisioning for devs', "The process was optimized in order to avoid projects to requests VM-Ware using their own charge code", 20),
+    new Achievement(3, 'Team CCT', 'Automated DEP status', "The DEP list is automatically updated when devices are exchanged", 0),
+    new Achievement(4, 'Team SnS', 'Some improvement', "Some text", 0)
     
   ];
 
@@ -38,6 +38,30 @@ export class DataService {
     this.logService.writeToLog("Retrieved " + this.achievements.length + " achievements");
     return this.achievements;
   }
+
+  getAchievement(id: number) {
+    var achievement: Achievement;
+    for (let i of this.achievements) {
+      if (i.id == id) {
+        console.log("found achivement with id " + id);
+        achievement = i;
+      }
+    }
+    return achievement;
+  }
+
+  saveAchievement(id: number, team: string, title: string, description: string, saving: number) {
+    for (var i = 0; i < this.achievements.length; i++) {
+      if(this.achievements[i].id == id) {
+          console.log("found.... updating");
+          this.achievements[i]['team'] = team;
+          this.achievements[i]['title'] = title;
+          this.achievements[i]['description'] = description;
+          this.achievements[i]['saving'] = saving;
+      }
+    }
+  }
+  
 
   // get the total number of achievements
   getNumberOfAchievements() {

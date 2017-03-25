@@ -17,6 +17,7 @@ import { AchievementAddComponent } from './achievements/achievement-list/achieve
 import { LogService } from './log.service';
 import { DataService } from './data.service';
 import { routing } from './app.routing';
+import { AchievementEditComponent } from './achievements/achievement-list/achievement-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { routing } from './app.routing';
     LeadersItemComponent,
     LeaderDetailsComponent,
     AchievementsItemComponent,
-    AchievementAddComponent
+    AchievementAddComponent,
+    AchievementEditComponent
   ],
   imports: [
     BrowserModule,

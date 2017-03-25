@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Achievement } from '../achievement';
 
@@ -11,6 +12,9 @@ import { DataService } from '../../data.service';
 })
 export class AchievementAddComponent implements OnInit {
 
+  private id: number;
+  @Input() achievement: Achievement;
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
@@ -18,7 +22,7 @@ export class AchievementAddComponent implements OnInit {
 
   addAchievement(team: string, title: string, description: string, saving: number) {
     console.log("addAchievement was passed " + team);
-    this.dataService.addAchievement(new Achievement(team, title, description, +saving))
+    this.dataService.addAchievement(new Achievement(0, team, title, description, +saving))
   }
 
 }

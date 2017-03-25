@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Achievement } from '../achievement'
 
@@ -11,9 +12,14 @@ export class AchievementsItemComponent implements OnInit {
 
   @Input() achievement: Achievement;
   achievementId: number;
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
+  }
+
+  onEdit() {
+    console.log('selected achievement ' + this.achievement['id']);
+    this.router.navigate(['achievement', this.achievement['id']]);
   }
 
 }
