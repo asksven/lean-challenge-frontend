@@ -1,5 +1,11 @@
 Details<hr>
 <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-info" [routerLink]="['new']" type="submit">Add</button>
+    </div>  
+</div>
+
+<div class="row">
   <div class="col-xs-12">
     <ul class="list-group">
       <lc-achievements-item *ngFor="let achievement of achievements; let i = index" [achievement]="achievement" [achievementId]="i"></lc-achievements-item>
@@ -7,9 +13,6 @@ Details<hr>
   </div>
 </div>  
 
-<div class="row">
-  <button class="btn btn-info" [routerLink]="['new']" type="submit">Add</button>
-</div>
 
 <div class="row">
   <div class="col-xs-12">
