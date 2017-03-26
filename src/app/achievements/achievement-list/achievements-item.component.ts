@@ -12,15 +12,16 @@ import { DataService } from '../../data.service';
 export class AchievementsItemComponent implements OnInit {
 
   @Input() achievement: Achievement;
-  
+  @Input() achievementId: number;
+ 
   constructor(public router: Router, public dataService: DataService) { }
 
   ngOnInit() {
   }
 
-  onEdit() {
+ onEdit() {
     console.log('selected achievement ' + this.achievement['id']);
-    this.router.navigate(['achievement', this.achievement['id']]);
+    this.router.navigate(['achievements', this.achievement['id'], 'edit']);
   }
 
   onDelete() {

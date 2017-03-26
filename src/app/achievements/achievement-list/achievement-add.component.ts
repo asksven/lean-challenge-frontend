@@ -15,14 +15,20 @@ export class AchievementAddComponent implements OnInit {
   private id: number;
   @Input() achievement: Achievement;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,private router: Router) { }
 
   ngOnInit() {
   }
 
   addAchievement(team: string, title: string, description: string, saving: number) {
     console.log("addAchievement was passed " + team);
-    this.dataService.addAchievement(new Achievement(0, team, title, description, +saving))
+    this.dataService.addAchievement(new Achievement(0, team, title, description, +saving));
+    this.router.navigate(['/achievements']);
+  }
+
+  onCancel() {
+    // navigate away
+    this.router.navigate(['/achievements']);
   }
 
 }

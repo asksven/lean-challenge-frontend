@@ -27,7 +27,7 @@
 
     <div class="row">
       <button class="btn btn-success" (click)="addAchievement(team.value, title.value, description.value, saving.value)" type="submit">Add</button>
-      <button class="btn btn-primary" type="submit">Clear</button>
+      <button class="btn btn-danger" (click)="onCancel()" type="submit">Cancel</button>
     </div>
   </div>
 </div>

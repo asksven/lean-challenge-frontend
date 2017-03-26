@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, Observable } from 'rxjs/Rx';
 
@@ -18,7 +18,7 @@ export class AchievementEditComponent implements OnInit, OnDestroy, ComponentCan
   private id: number;
   private done: boolean = false;
   
-  @Input() achievement: Achievement;
+  achievement: Achievement;
 
   constructor(private dataService: DataService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.subscription = activatedRoute.params.subscribe(

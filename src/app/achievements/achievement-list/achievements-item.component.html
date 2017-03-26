@@ -1,4 +1,4 @@
-<div class="list-group-item clearfix">
+<div class="list-group-item clearfix" routerLinkActive="active">
   <div class="pull-left">
         
     <h4 class="list-group-item-heading">{{achievement?.title}}</h4>
@@ -7,7 +7,7 @@
     <p class="list-group-item-text"><b>{{achievement?.saving}} Hours/Year</b></p>
   </div>
   <div class="pull-right">
-    <button class="btn btn-success" (click)="onEdit()" type="submit">Edit</button>
-    <button class="btn btn-primary" (click)="onDelete()" type="submit">Delete</button>
+    <button class="btn btn-info" (click)="onEdit()" type="submit">Edit</button>
+    <button class="btn btn-danger" (click)="onDelete()" type="submit">Delete</button>
   </div>
 </div>
