@@ -14,9 +14,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="['/achievements']">Achievements</a></li>
+        <li><a routerLinkActive="active" [routerLink]="['/achievements']">Achievements</a></li>
         <!-- removed for now as not part of MVP <li><a href="#">Vote on Ideas</a></li> -->
-        <li><a href="#">Make a Contribution</a></li>
+        <li><a routerLinkActive="active" [routerLink]="['add-achievement']">Make a Contribution</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
