@@ -12,7 +12,6 @@ import { LeadersComponent } from './leaders/leaders.component';
 import { LeadersItemComponent } from './leaders/leader-list/leaders-item.component';
 import { LeaderDetailsComponent } from './leaders/leader-details/leader-details.component';
 import { AchievementsItemComponent } from './achievements/achievement-list/achievements-item.component';
-import { AchievementAddComponent } from './achievements/achievement-list/achievement-add.component';
 import { AchievementEditGuard } from './achievements/achievement-list/achievement-edit.guard';
 
 import { LogService } from './log.service';
@@ -31,7 +30,6 @@ import { AchievementEditComponent } from './achievements/achievement-list/achiev
     LeadersItemComponent,
     LeaderDetailsComponent,
     AchievementsItemComponent,
-    AchievementAddComponent,
     AchievementEditComponent
   ],
   imports: [
