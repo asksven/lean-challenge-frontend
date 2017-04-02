@@ -1,23 +1,39 @@
+import { Component, OnDestroy } from '@angular/core';
+
 import { DataService } from './data.service';
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
+import { Subscription } from 'rxjs/Rx';
 
 @Component({
   selector: 'lc-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-
-  constructor(private dataService: DataService) { }
-
-  ngOnInit() {
+export class HeaderComponent implements OnDestroy {
+  isAuthenticated: boolean = false;
+  private subscription: Subscription;
+  constructor(private dataService: DataService, private authService: AuthService) {
+    this.subscription = this.authService.isAuthenticated().subscribe(
+      authStatus => this.isAuthenticated = authStatus
+    );  
   }
 
-  onStore() {
-    this.dataService.storeData();
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
-  onRetrieve() {
-    this.dataService.fetchData();
+
+  onLogOn() {
+    this.authService.logOn();
   }
+
+  onLogOff() {
+    this.authService.logOff();
+
+  }
+
+  isAuth() {
+    return this.isAuthenticated;
+  }
+  
 }

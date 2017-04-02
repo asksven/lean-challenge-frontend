@@ -16,6 +16,8 @@ import { AchievementEditGuard } from './achievements/achievement-list/achievemen
 
 import { LogService } from './log.service';
 import { DataService } from './data.service';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 import { routing } from './app.routing';
 import { AchievementEditComponent } from './achievements/achievement-list/achievement-edit.component';
 
@@ -38,7 +40,7 @@ import { AchievementEditComponent } from './achievements/achievement-list/achiev
     HttpModule,
     routing
   ],
-  providers: [LogService, DataService, AchievementEditGuard],
+  providers: [LogService, DataService, AuthService, AchievementEditGuard, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

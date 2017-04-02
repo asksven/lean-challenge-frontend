@@ -1,7 +1,7 @@
 Details<hr>
 <div class="row">
     <div class="col-xs-12">
-      <button class="btn btn-info" [routerLink]="['new']" type="submit">Add</button>
+      <button *ngIf="isAuth()" class="btn btn-info" [routerLink]="['new']" type="submit">Add</button>
     </div>  
 </div>
 
