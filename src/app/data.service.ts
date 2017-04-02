@@ -1,13 +1,19 @@
+import { Http, Response, Headers } from '@angular/http';
 import { Injectable, EventEmitter } from '@angular/core';
 
 import { Achievement } from './achievements/achievement';
 import { Leader } from './leaders/leader';
 
 import { LogService } from './log.service';
+import { environment } from '../environments/environment';
+
+import 'rxjs/Rx';
+
 
 @Injectable()
 export class DataService {
   pushData = new EventEmitter<string>();
+  achievementsChanged = new EventEmitter<Achievement[]>()
 
   private achievements: Achievement[] = [
     new Achievement(1, 'Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50),
@@ -17,8 +23,9 @@ export class DataService {
     
   ];
 
-  constructor(private logService: LogService) {
+  constructor(private logService: LogService, private http: Http) {
     console.log("initialized DataService");
+    console.log("Using API URL " + environment.dataServiceEndpoint);
   }
 
   // inform all observers of a data-change
@@ -29,13 +36,16 @@ export class DataService {
   // add an achievement
   addAchievement(value: Achievement) {
     this.logService.writeToLog("Added " + JSON.stringify(value) + " to achievements");
+    value.id = this.achievements.length + 1;
     this.achievements.push(value);
+    this.storeData();
     this.dataChanged("added");
   }
   
   // fetch all achievements
   getAchievements() {
     this.logService.writeToLog("Retrieved " + this.achievements.length + " achievements");
+    this.fetchData();
     return this.achievements;
   }
 
@@ -59,6 +69,7 @@ export class DataService {
         
       }
     }
+    this.storeData();
   }
 
   saveAchievement(id: number, team: string, title: string, description: string, saving: number) {
@@ -69,8 +80,29 @@ export class DataService {
         this.achievements[id]['description'] = description;
         this.achievements[id]['saving'] = saving;
     }
+    this.storeData();
   }
-  
+// handle persistence
+  storeData() {
+    const body = JSON.stringify(this.achievements);
+    const headers = new Headers( {
+      'Content-Type': 'application/json'
+    });
+    this.http.put(environment.dataServiceEndpoint + '/achievements.json', body, {headers: headers}).subscribe();
+
+  }  
+
+  fetchData() {
+    return this.http.get(environment.dataServiceEndpoint + '/achievements.json')
+        .map((response: Response) => response.json()).subscribe(
+          (data: Achievement[]) => {
+            this.achievements = data;
+            console.log("retreieved: " + this.achievements);
+            this.achievementsChanged.emit(this.achievements);
+            this.dataChanged("changed");
+          }
+        );
+  }  
 
   // get the total number of achievements
   getNumberOfAchievements() {

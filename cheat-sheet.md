@@ -9,6 +9,8 @@ Prefix is recommended to avoid any namespace-clashes
 `ng g cl <class-name>`
 ### Create a service
 `ng g s <service-name>`
+### Create a pipe
+`ng g pipe`
 
 
 

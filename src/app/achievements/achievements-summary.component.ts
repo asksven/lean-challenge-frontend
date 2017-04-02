@@ -27,5 +27,4 @@ export class AchievementsSummaryComponent implements OnInit {
     this.quality_improvements = this.dataService.getNumberofQualityImprovements();
     this.saving = this.dataService.getTotalSaving();
   }
-
 }

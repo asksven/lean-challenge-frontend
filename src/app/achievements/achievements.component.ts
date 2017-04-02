@@ -18,6 +18,9 @@ export class AchievementsComponent implements OnInit {
   ngOnInit() {
     this.logService.writeToLog('achivements component was initialized');
     this.achievements = this.dataService.getAchievements();
+    this.dataService.achievementsChanged.subscribe(
+      (achievements: Achievement[]) => this.achievements = achievements
+    );
   }
 
 }
