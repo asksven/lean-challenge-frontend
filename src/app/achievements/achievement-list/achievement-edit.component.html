@@ -1,47 +1,41 @@
-{{mode}}<hr>
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
-<div class="row">
-  <div class="col-xs-12">
-    <div class="row">
-      <div class="col-sm-5 form-group">
-        <label for="item-team">Team</label>
-        <input [(ngModel)]="achievement.team" name="team" type="text" #team="ngModel" id="item-team" required class="form-control" value="{{achievement?.team}}">
-        <div *ngIf="!team.valid">
-          Team can't be empty
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-5 form-group">
-        <label for="item-title">Title</label>
-        <input [(ngModel)]="achievement.title" name="title" type="text" #title="ngModel" id="item-title" required class="form-control" value="{{achievement?.title}}">
-        <div *ngIf="!title.valid">
-          Title can't be empty
-        </div>
+<md-card>
+    <md-card-title>{{mode}}</md-card-title>
+      <md-card-content>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <p>  
+            <md-input-container class="full-width">
+                <input mdInput placeholder="Team" [(ngModel)]="achievement.team" name="team" type="text" #team="ngModel" id="item-team" required class="form-control" value="{{achievement?.team}}">
+                <div *ngIf="!team.valid">
+                  Team can't be empty
+                </div>
+            </md-input-container>
+          </p>
+          <p>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="Title" [(ngModel)]="achievement.title" name="title" type="text" #title="ngModel" id="item-title" required class="form-control" value="{{achievement?.title}}">
+                <div *ngIf="!title.valid">
+                  Title can't be empty
+                </div>
+            </md-input-container>
+          </p>
+          <p>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="Description" [(ngModel)]="achievement.description" name="description" type="text" #description="ngModel" id="item-description" required class="form-control" value="{{achievement?.description}}">
+                <div *ngIf="!description.valid">
+                  Description can't be empty
+                </div>
+            </md-input-container>
+          </p>
+          <p>  
+            <md-input-container class="full-width">
+                <input mdInput placeholder="Saving [Hrs./Year]" [(ngModel)]="achievement.saving" name="saving" type="number" #saving="ngModel" id="item-saving" required pattern="[0-9]+" class="form-control" value="{{achievement?.saving}}">
+                <div *ngIf="!saving.valid">
+                  Saving must be a number
+                </div> 
+            </md-input-container>
+          </p>   
+          <button md-raised-button type="submit" [disabled]="!f.valid">Save</button>  
+        </form>
+    </md-card-content>
+</md-card>
 
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-5 form-group">
-        <label for="item-description">Description</label>
-        <input [(ngModel)]="achievement.description" name="description" type="text" #description="ngModel" id="item-description" required class="form-control" value="{{achievement?.description}}">
-        <div *ngIf="!description.valid">
-          Description can't be empty
-        </div>
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-5 form-group">
-        <label for="item-saving">Saving [Hrs./Year]</label>
-        <input [(ngModel)]="achievement.saving" name="saving" type="number" #saving="ngModel" id="item-saving" required pattern="[0-9]+" class="form-control" value="{{achievement?.saving}}">
-        <div *ngIf="!saving.valid">
-          Saving must be a number
-        </div>
-
-      </div>
-    </div>
-    <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>  
-  </div>
-</div>  
-</form>
