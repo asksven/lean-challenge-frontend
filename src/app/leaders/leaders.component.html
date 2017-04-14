@@ -1,8 +1,9 @@
-Leaders<hr>
-<div class="row">
-  <div class="col-cs-12">
-    <ul class="list-group">
-      <lc-leaders-item *ngFor="let leader of leaders" [leader]="leader" (click)="onSelected(leader)"></lc-leaders-item>
-    </ul>
-  </div>
-</div>
+<md-card>
+    <md-card-title>Leaders</md-card-title>
+    <md-card-content>
+        <md-list class="leaders-list">
+            <lc-leaders-item *ngFor="let leader of leaders" [leader]="leader" (click)="onSelected(leader)"></lc-leaders-item>
+        </md-list>
+    </md-card-content>
+</md-card>
+

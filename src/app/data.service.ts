@@ -3,6 +3,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 import { Achievement } from './achievements/achievement';
 import { Leader } from './leaders/leader';
+import { Team } from './team';
 
 import { LogService } from './log.service';
 import { environment } from '../environments/environment';
@@ -16,15 +17,14 @@ export class DataService {
   achievementsChanged = new EventEmitter<Achievement[]>()
 
   private achievements: Achievement[] = [
-    new Achievement(1, 'Team CCT', 'Optimized Azure Group FW Process', "The process was optimized in order to avoid generating deltas", 50),
-    new Achievement(2, 'Team CCT', 'Optimized laptop provisioning for devs', "The process was optimized in order to avoid projects to requests VM-Ware using their own charge code", 20),
-    new Achievement(3, 'Team CCT', 'Automated DEP status', "The DEP list is automatically updated when devices are exchanged", 0),
-    new Achievement(4, 'Team SnS', 'Some improvement', "Some text", 0)
-    
   ];
+
+  private teams: Team[] = [];
 
   constructor(private logService: LogService, private http: Http) {
     console.log("initialized DataService");
+    this.fetchTeams();
+    this.fetchAchievements();
     console.log("Using API URL " + environment.dataServiceEndpoint);
   }
 
@@ -38,14 +38,17 @@ export class DataService {
     this.logService.writeToLog("Added " + JSON.stringify(value) + " to achievements");
     value.id = this.achievements.length + 1;
     this.achievements.push(value);
-    this.storeData();
+    this.storeAchievements();
     this.dataChanged("added");
   }
   
   // fetch all achievements
   getAchievements() {
     this.logService.writeToLog("Retrieved " + this.achievements.length + " achievements");
-    this.fetchData();
+    
+    this.fetchTeams();
+    this.fetchAchievements();
+    
     return this.achievements;
   }
 
@@ -60,6 +63,19 @@ export class DataService {
     return achievement;
   }
 
+  getAvatar(team: string) {
+    var avatar: string = "";
+    console.log("getAvatar(" + team + ")");
+    for (let i of this.teams) {
+      console.log("checking " + i);
+      if (i.name === team) {
+        console.log("found avatar for team " + team);
+        avatar = i.avatar;
+      }
+    }
+    return avatar;
+  }
+
   deleteAchievement(id: number) {
 
     for (var i: number = 0; i < this.achievements.length; i++) {
@@ -69,7 +85,7 @@ export class DataService {
         
       }
     }
-    this.storeData();
+    this.storeAchievements();
   }
 
   saveAchievement(id: number, team: string, title: string, description: string, saving: number) {
@@ -80,10 +96,10 @@ export class DataService {
         this.achievements[id]['description'] = description;
         this.achievements[id]['saving'] = saving;
     }
-    this.storeData();
+    this.storeAchievements();
   }
 // handle persistence
-  storeData() {
+  storeAchievements() {
     const body = JSON.stringify(this.achievements);
     const headers = new Headers( {
       'Content-Type': 'application/json'
@@ -92,7 +108,7 @@ export class DataService {
 
   }  
 
-  fetchData() {
+  fetchAchievements() {
     return this.http.get(environment.dataServiceEndpoint + '/achievements.json')
         .map((response: Response) => response.json()).subscribe(
           (data: Achievement[]) => {
@@ -100,6 +116,16 @@ export class DataService {
             console.log("retreieved: " + this.achievements);
             this.achievementsChanged.emit(this.achievements);
             this.dataChanged("changed");
+          }
+        );
+  }  
+
+  fetchTeams() {
+    return this.http.get(environment.dataServiceEndpoint + '/teams.json')
+        .map((response: Response) => response.json()).subscribe(
+          (data: Team[]) => {
+            this.teams = data;
+            console.log("retreieved: " + this.teams);
           }
         );
   }  

@@ -1,10 +1,8 @@
-<div class="list-group-item clearfix">
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{leader.team}}</h4>
-    <p class="list-group-item-text">{{leader.improvements}} improvements</p>
-  </div>
-  
-  <span class="pull-right">
-    <p class="list-group-item-text">{{leader.saving}} Hours/Year</p>
-  </span>
-</div>
+<md-list-item>
+    <img md-list-avatar src="{{avatar}}" alt="avatar">
+    <h3 md-line>{{leader.team}}</h3>
+    <p md-line>
+      <span>{{leader.improvements}} improvements</span>
+      <span style="float:right">{{leader.saving}} Hours/Year</span>
+    </p>
+</md-list-item>
