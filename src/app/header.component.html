@@ -1,32 +1,24 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" [routerLink]="['']">Lean Challenge</a>
-    </div>
+<md-toolbar color="primary">
+  <span>
+    <button md-icon-button [routerLink]="['']"><md-icon>home</md-icon></button>
+  </span>  
+  <span>  
+    <button md-button routerLinkActive="active" [routerLink]="['/achievements']">
+      Achievements
+    </button>
+    <button md-button routerLinkActive="active" [routerLink]="['add-achievement']">
+      Make a Contribution
+    </button>
+  </span>
+  <span class="fill-remaining-space"></span>
+  <span>  
+    <button md-button class="md-raised" aria-label="User" [mdMenuTriggerFor]="userMenu">
+      User
+    </button>
+    <md-menu #userMenu="mdMenu">
+      <button md-menu-item *ngIf="!isAuth()" (click)="onLogOn()" style="cursor: pointer;">Log In</button>
+      <button md-menu-item *ngIf="isAuth()" (click)="onLogOff()" style="cursor: pointer;">Log Out</button>
+    </md-menu>
+  </span>
+</md-toolbar>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a routerLinkActive="active" [routerLink]="['/achievements']">Achievements</a></li>
-        <!-- removed for now as not part of MVP <li><a href="#">Vote on Ideas</a></li> -->
-        <li><a routerLinkActive="active" [routerLink]="['add-achievement']">Make a Contribution</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li *ngIf="!isAuth()"><a (click)="onLogOn()" style="cursor: pointer;">Log In</a></li>
-            <li *ngIf="isAuth()"><a (click)="onLogOff()" style="cursor: pointer;">Log Out</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
