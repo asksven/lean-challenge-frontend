@@ -1,16 +1,18 @@
 <md-card>
-    <md-card-title>Details</md-card-title>
-      <md-card-content>
+    <md-card-title>
+      Details
+    </md-card-title>
+    <md-card-content>
 
-      <div class="row">
-          <div class="col-xs-12">
-            <button md-raised-button *ngIf="isAuth()" [routerLink]="['new']" type="submit">Add</button>
-          </div>  
-      </div>
       <md-list>
-            <lc-achievements-item *ngFor="let achievement of achievements; let i = index" [achievement]="achievement" [achievementId]="i"></lc-achievements-item>
+        <lc-achievements-item *ngFor="let achievement of achievements; let i = index" [achievement]="achievement" [achievementId]="i"></lc-achievements-item>
       </md-list>
+
     </md-card-content>
+  
+    <md-card-actions>
+      <button md-fab *ngIf="isAuth()" color="primary" [routerLink]="['new']" type="submit"><md-icon>add</md-icon></button>
+    </md-card-actions>
 </md-card>
 
 <div class="row">

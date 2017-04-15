@@ -1,11 +1,13 @@
 <md-list-item>
     <h3 md-line>{{achievement?.title}}</h3>
     <p md-line>{{achievement?.description}}</p>
-    <p md-line>{{achievement?.saving}} Hours/Year</p>
-      
-    <span style="float:right">
-      <button md-raised-button *ngIf="isAuth()" (click)="onEdit()" type="submit">Edit</button>
-      <button md-raised-button *ngIf="isAuth()" (click)="onDelete()" type="submit">Delete</button>
-    </span>
+    <p md-line><i>{{achievement?.saving}} Hours/Year</i></p>
+    <button md-button [md-menu-trigger-for]="menu">
+     <md-icon>more_horizon</md-icon>
+  </button>  
+  <md-menu #menu="mdMenu">
+      <button md-menu-item *ngIf="isAuth()" (click)="onEdit()" type="submit"><md-icon>mode_edit</md-icon>Edit</button>
+      <button md-menu-item *ngIf="isAuth()" (click)="onDelete()" type="submit"><md-icon>delete</md-icon>Delete</button>
+  </md-menu>      
+    <md-divider ng-if="!$last"></md-divider>
 </md-list-item>
-<hr/>
