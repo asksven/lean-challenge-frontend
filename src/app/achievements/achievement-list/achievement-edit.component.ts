@@ -4,6 +4,7 @@ import { Subscription, Observable } from 'rxjs/Rx';
 import { NgForm } from '@angular/forms';
 
 import { Achievement } from '../achievement';
+import { Team } from '../../team';
 import { ComponentCanDeactivate } from './achievement-edit.guard';
 
 import { DataService } from '../../data.service';
@@ -24,6 +25,8 @@ export class AchievementEditComponent implements OnInit, OnDestroy {
     'saving': 0
   };
 
+  teams: Team[] = [];
+
   private id: number;
   mode: string = "Edit";
 
@@ -31,6 +34,7 @@ export class AchievementEditComponent implements OnInit, OnDestroy {
     this.subscription = activatedRoute.params.subscribe(
       (param: any) => this.id = param['id']
     );
+
   }
 
   ngOnInit() {
@@ -40,6 +44,12 @@ export class AchievementEditComponent implements OnInit, OnDestroy {
     } else {
       this.mode = "Add";
     }
+    this.teams = this.dataService.getTeams();
+    this.teams.push(new Team("Team SnS", ""));
+    this.teams.push(new Team("Team Unknown", ""));
+    
+    console.log("loaded teams: " + this.teams.length);
+
   }
 
   ngOnDestroy() {

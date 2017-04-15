@@ -1,26 +1,41 @@
+<!--
+<form>
+  <md-select placeholder="Team" [(ngModel)]="achievement.team" name="team">
+    <md-option *ngFor="let team of teams" [value]="team.name">
+      {{team.name}}
+    </md-option>
+  </md-select>
+
+                <input mdInput placeholder="Title" [(ngModel)]="achievement.title" name="title" type="text" #title="ngModel" id="item-title" required class="form-control" value="{{achievement?.title}}">
+                <div *ngIf="!title.valid">
+                  Title can't be empty 
+                </div>
+</form>
+-->
 <md-card>
     <md-card-title>{{mode}}</md-card-title>
       <md-card-content>
+
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
           <p>  
             <md-input-container class="full-width">
-                <input mdInput placeholder="Team" [(ngModel)]="achievement.team" name="team" type="text" #team="ngModel" id="item-team" required class="form-control" value="{{achievement?.team}}">
+                <input mdInput placeholder="Team" [(ngModel)]="achievement.team" name="team" #team="ngModel" id="item-team" required value="{{achievement?.team}}">
                 <div *ngIf="!team.valid">
                   Team can't be empty
-                </div>
+                </div>                
             </md-input-container>
           </p>
           <p>
             <md-input-container class="full-width">
-                <input mdInput placeholder="Title" [(ngModel)]="achievement.title" name="title" type="text" #title="ngModel" id="item-title" required class="form-control" value="{{achievement?.title}}">
+                <input mdInput placeholder="Title" [(ngModel)]="achievement.title" name="title" type="text" #title="ngModel" id="item-title" required value="{{achievement?.title}}">
                 <div *ngIf="!title.valid">
-                  Title can't be empty
+                  Title can't be empty 
                 </div>
             </md-input-container>
           </p>
           <p>
             <md-input-container class="full-width">
-                <input mdInput placeholder="Description" [(ngModel)]="achievement.description" name="description" type="text" #description="ngModel" id="item-description" required class="form-control" value="{{achievement?.description}}">
+                <input mdInput placeholder="Description" [(ngModel)]="achievement.description" name="description" type="text" #description="ngModel" id="item-description" required value="{{achievement?.description}}">
                 <div *ngIf="!description.valid">
                   Description can't be empty
                 </div>
@@ -28,7 +43,7 @@
           </p>
           <p>  
             <md-input-container class="full-width">
-                <input mdInput placeholder="Saving [Hrs./Year]" [(ngModel)]="achievement.saving" name="saving" type="number" #saving="ngModel" id="item-saving" required pattern="[0-9]+" class="form-control" value="{{achievement?.saving}}">
+                <input mdInput placeholder="Saving [Hrs./Year]" [(ngModel)]="achievement.saving" name="saving" type="number" #saving="ngModel" id="item-saving" required pattern="[0-9]+" value="{{achievement?.saving}}">
                 <div *ngIf="!saving.valid">
                   Saving must be a number
                 </div> 
@@ -38,4 +53,3 @@
         </form>
     </md-card-content>
 </md-card>
-

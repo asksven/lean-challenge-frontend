@@ -52,6 +52,11 @@ export class DataService {
     return this.achievements;
   }
 
+  // fetch all teams
+  getTeams() {
+    return this.teams;
+  }
+
   getAchievement(id: number) {
     var achievement: Achievement;
     for (let i of this.achievements) {
